@@ -39,6 +39,10 @@
 </a>
 {{- end }}
 
+{{- with resources.Get "js/lightbox.js" }}
+<script src="{{ .RelPermalink }}"></script>
+{{- end }}
+
 {{- with resources.Get "js/hidden.js" }}
 <script src="{{ .RelPermalink }}"></script>
 {{- end }}
