@@ -39,6 +39,10 @@
 </a>
 {{- end }}
 
+{{- with resources.Get "js/hidden.js" }}
+<script src="{{ .RelPermalink }}"></script>
+{{- end }}
+
 {{- partial "extend_footer.html" . }}
 
 <script>
