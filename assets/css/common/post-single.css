@@ -63,10 +63,6 @@ details.toc {
     border: 1px solid var(--border);
 }
 
-[data-theme="dark"] details.toc {
-    background: var(--entry);
-}
-
 details.toc summary {
     padding: 0.3rem 1.2rem;
     border-radius: var(--radius);
