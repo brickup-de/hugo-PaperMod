@@ -23,7 +23,7 @@
 {{- else if (or .IsPage .IsSection) }}
 {{/* BreadcrumbList */}}
 {{- $url := replace .Parent.Permalink ( printf "%s" site.Home.Permalink) "" }}
-{{- $lang_url := strings.TrimPrefix ( printf "%s/" .Lang) $url }}
+{{- $lang_url := strings.TrimPrefix ( printf "%s/" (partial "templates/_funcs/get-compat-lang" .Language).Name) $url }}
 {{- $bc_list := (split $lang_url "/")}}
 
 {{- $scratch := newScratch }}
@@ -76,7 +76,7 @@
   ],
   "articleBody": {{ .Content | safeJS | htmlUnescape | plainify }},
   "wordCount" : "{{ .WordCount }}",
-  "inLanguage": {{ .Language.Lang | default "en-us" }},
+  "inLanguage": {{ (partial "templates/_funcs/get-compat-lang" .Language).Name | default "en-us" }},
   {{ if .Params.cover.image -}}
   "image":
     {{- if (ne .Params.cover.relative true) -}}

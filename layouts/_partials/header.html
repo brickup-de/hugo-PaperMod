@@ -59,20 +59,21 @@
                 {{- end }}
                 
                 {{- if (not site.Params.disableLangToggle) }}
-                    {{- $lang := .Lang}}
+                    {{- $langName := (partial "templates/_funcs/get-compat-lang" .Language).Name }}
                     {{- with site.Home.Translations }}
                     {{- $separator := or $label_text (not site.Params.disableThemeToggle)}}
                     {{- if $separator }}<span class="nav-sep">|</span>{{ end }}
                     <ul class="lang-menu">
                         {{- range . -}}
-                        {{- if ne $lang .Lang }}
+                        {{- $lang := partial "templates/_funcs/get-compat-lang" .Language }}
+                        {{- if ne $langName $lang.Name }}
                         <li>
-                            <a href="{{- .Permalink -}}" title="{{ .Language.Params.languageAltTitle | default (.Language.LanguageName | emojify) | default (.Lang | title) }}"
-                                aria-label="{{ .Language.LanguageName | default (.Lang | title) }}">
-                                {{- if (and site.Params.displayFullLangName (.Language.LanguageName)) }}
-                                {{- .Language.LanguageName | emojify -}}
+                            <a href="{{- .Permalink -}}" title="{{ .Language.Params.languageAltTitle | default ($lang.Label | emojify) | default ($lang.Name | title) }}"
+                                aria-label="{{ $lang.Label | default ($lang.Name | title) }}">
+                                {{- if (and site.Params.displayFullLangName ($lang.Label)) }}
+                                {{- $lang.Label | emojify -}}
                                 {{- else }}
-                                {{- .Lang | title -}}
+                                {{- $lang.Name | title -}}
                                 {{- end -}}
                             </a>
                         </li>

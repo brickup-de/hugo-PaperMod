@@ -12,7 +12,8 @@
   <meta property="og:description" content="{{ trim . "\n\r\t " }}">
 {{- end }}
 
-{{- with or .Params.locale site.Language.LanguageCode }}
+{{- $siteLocale := (partial "templates/_funcs/get-compat-lang" site.Language).Locale }}
+{{- with or .Params.locale $siteLocale }}
   <meta property="og:locale" content="{{ replace . `-` `_` }}">
 {{- end }}
 

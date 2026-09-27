@@ -1,0 +1,16 @@
+{{- /* see New/Deprecated hints on https://gohugo.io/methods/site/language/
+       TODO: remove once theme min_version >= 0.158.0 */}}
+{{- $lang := . }}
+{{- $result := dict }}
+{{- if ge hugo.Version "0.158.0" }}
+  {{- $result = dict  "Direction" $lang.Direction
+                      "Label"     $lang.Label
+                      "Locale"    $lang.Locale
+                      "Name"      $lang.Name }}
+{{- else }}
+  {{- $result = dict  "Direction" $lang.LanguageDirection
+                      "Label"     $lang.LanguageName
+                      "Locale"    $lang.LanguageCode
+                      "Name"      $lang.Lang }}
+{{- end }}
+{{- return $result }}

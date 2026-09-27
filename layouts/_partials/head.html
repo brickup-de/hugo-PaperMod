@@ -98,7 +98,7 @@
 <link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}" title="{{ .Name }}">
 {{ end -}}
 {{- range .AllTranslations -}}
-<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+<link rel="alternate" hreflang="{{ (partial "templates/_funcs/get-compat-lang" .Language).Name }}" href="{{ .Permalink }}">
 {{ end -}}
 
 <noscript>
