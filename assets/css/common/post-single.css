@@ -78,7 +78,7 @@ details summary {
 
 details .title {
     display: inline;
-    font-weight: 500;
+    font-weight: bold;
     margin-inline-start: 0.2rem;
 }
 
